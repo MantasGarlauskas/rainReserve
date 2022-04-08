@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">Įvesti duomenys</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="" class="form-label">Talpa (l)</label>
+          <input
+            class="form-control"
+            type="number"
+            id="talpa"
+            name="talpa"
+            [(ngModel)]="talpa"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label"
+            >Rezervuaro pildymo greitis (l/val.)</label
+          >
+          <input
+            class="form-control"
+            type="number"
+            id="greitis"
+            name="greitis"
+            [(ngModel)]="greitis"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label"
+            >Laikas kiek rezervuaras bus pildomas (val.)</label
+          >
+          <input
+            class="form-control"
+            type="number"
+            id="laikas"
+            name="laikas"
+            [(ngModel)]="laikas"
+          />
+        </div>
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="skaiciuoti()"
+          [disabled]="talpa == null || greitis == null || laikas == null"
+        >
+          Skaičiuoti
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">Rezultatai</div>
+      <div class="card-body">
+        <div
+          *ngIf="uzpildyta != 0"
+          class="alert"
+          [ngClass]="{
+            'alert-success': uzpildyta < 80,
+            'alert-primary': uzpildyta >= 80 && uzpildyta < 100,
+            'alert-danger': uzpildyta >= 100
+          }"
+        >
+          {{ info }} <br />
+          Rezervuaro yra užpildyta: <strong>{{ uzpildyta }} %</strong>
+        </div>
+
+        <div *ngIf="uzpildyta == 0">
+          Iveskite talpą, pildymo greitį ir laiką kiek rezervuoras bus pildomas
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
